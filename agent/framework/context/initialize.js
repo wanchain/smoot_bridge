@@ -10,17 +10,15 @@ const context = require("./index.js");
 const ksTool = require("../utils/keyStore");
 
 const EthBaseChain = require("@modules/chain/evm/ethBase.js");
-const StellarChain = require("@modules/chain/stellar/stellar.js");
+// const StellarChain = require("@modules/chain/stellar/stellar.js");
 
 const MultiSig = require('@modules/relay/multiSig');
 const EthAgentModel = require("@modules/chain/evm/EthAgentModel.js");
-const StellarAgent = require("@modules/chain/stellar/StellarAgent.js")
+// const StellarAgent = require("@modules/chain/stellar/StellarAgent.js")
 
 const MaticGateWayConverter = require('@modules/chain/evm/convert/index.js')
-const StellarGateWayConverter = require('@modules/chain/stellar/convert/index.js')
 
-const Stellar_NftMarketConverter  = require('@modules/converter/nftMarket/stellar/index.js');
-const Matic_NftMarketConverter  = require('@modules/converter/nftMarket/evm/index.js');
+const Matic_TokenCrossChainConverter  = require('@modules/converter/TokenCrossChainDemo/evm/index.js');
 
 // Import WmbApp configuration from standalone config file
 const { WmbAppLookupTable } = require('./wmbAppConfig.js');
@@ -31,11 +29,15 @@ const WmbConverterManager = require("./WmbConverterManager.js")
 const wmbConverterManager = new WmbConverterManager(WmbAppLookupTable);
 
 wmbConverterManager.setWmbGateConverter("MATIC", new MaticGateWayConverter("MATIC"));
-wmbConverterManager.setWmbGateConverter("XLM", new StellarGateWayConverter("XLM"));
+wmbConverterManager.setWmbGateConverter("ETH", new MaticGateWayConverter("ETH"));
 
-wmbConverterManager.setWmbAppConverter("MATIC", "NftMarket", new Matic_NftMarketConverter("MATIC"));
-wmbConverterManager.setWmbAppConverter("XLM", "NftMarket", new Stellar_NftMarketConverter("XLM"));
+// DApp-first:
+wmbConverterManager.setWmbAppConverter("MATIC", "DemoTokenFromPoly2Eth", new Matic_TokenCrossChainConverter("MATIC"));
+wmbConverterManager.setWmbAppConverter("ETH", "DemoTokenFromPoly2Eth", new Matic_TokenCrossChainConverter("ETH"));
 
+// DApp-second:
+wmbConverterManager.setWmbAppConverter("MATIC", "DemoTokenFromEth2Poly", new Matic_TokenCrossChainConverter("MATIC"));
+wmbConverterManager.setWmbAppConverter("ETH", "DemoTokenFromEth2Poly", new Matic_TokenCrossChainConverter("ETH"));
 
 // exports.convertDict = convertDict;
 global.wmbConverterMgr = wmbConverterManager;
@@ -58,11 +60,14 @@ function creatEthAgentFork(chainType) {
 // };
 
 context.setAgentClass("MATIC", creatEthAgentFork('MATIC'));
-context.setAgentClass("XLM", StellarAgent);
+context.setAgentClass("ETH", creatEthAgentFork('ETH'));
+// context.setAgentClass("XLM", StellarAgent);
 
 context.setChainClass("MATIC", EthBaseChain);
-context.setChainClass("XLM", StellarChain);
+context.setChainClass("ETH", EthBaseChain);
+// context.setChainClass("XLM", StellarChain);
 
 context.setRelayClass("MATIC", MultiSig);
-context.setRelayClass("XLM", MultiSig);
+context.setRelayClass("ETH", MultiSig);
+// context.setRelayClass("XLM", MultiSig);
 

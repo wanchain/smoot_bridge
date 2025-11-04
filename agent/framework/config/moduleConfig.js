@@ -91,7 +91,7 @@ const config = {
 
 const test_Config = {
   crossDbUrl: dbUrl + "/cc_test",
-  
+
   multiSignature: true,
 
   network: !testnet ? 'mainnet' : 'testnet',
@@ -132,28 +132,28 @@ const test_Config = {
         SAFE_BLOCK_NUM: 0,
         CONFIRM_BLOCK_NUM: 128,
         SYNC_INTERVAL_BLOCK_NUM: 500,
-        SYNC_INTERVAL_TIME: 40 * 1000,
+        SYNC_INTERVAL_TIME: 20 * 1000,
         curveID: 1
       },
       CONTRACT: {
-        gatewayAddr: '0x01515a9cFcB38030c1C5B82827C03b881D825F54',
+        gatewayAddr: '0x946d3cDB556d343d87880e125Dc749C263346Ca1',
         gatewayAbi: require('../abi/wmb.gateway.matic.abi.json')
       },
       FUNCTION: commonFunction,
       EVENT: commonEvent
     },
-    XLM: {
+    ETH: {
       CONF: {
         SAFE_BLOCK_NUM: 1,
         // TRACE_BLOCK_NUM: 20000,
         TRACE_BLOCK_NUM: 1500,
         CONFIRM_BLOCK_NUM: 1,
         SYNC_INTERVAL_BLOCK_NUM: 20, // in one minute, new generate blocks is around 12 .
-        SYNC_INTERVAL_TIME: 60 * 1000,  // call sync every 3 mionute
+        SYNC_INTERVAL_TIME: 30 * 1000,  // call sync every 30 seconds
         curveID: 1
       },
       CONTRACT: {
-        gatewayAddr: 'CB2H4YDRDJR5BQEYGT76VVJH2FXA54AB6ZWCVX5OVVTVUAVCII7HVGHB',
+        gatewayAddr: '0x94Ba3Afc22f98C37e8d05F748DD2C928183d1d3C',
       },
       FUNCTION: commonFunction,
       EVENT: commonEvent

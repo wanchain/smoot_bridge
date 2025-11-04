@@ -12,9 +12,13 @@
 const WmbAppLookupTable = {
 
     // Keys are dApp names, should match with the key used in setWmbAppConverter() inside the context's initialize.js
-    "NftMarket" : [ // need to change to real WmbApp contract address
-          "0x7349B7e4baea99d499DEFC0B41f88500630e781A",               // App On Matic
-          "CAD5TR3KQNGPAZUIKKHQ7WHFMNBDIZ5JK4EJDOFKHBPCEBXHKYFBUUP7"  // App On Stellar
+    "DemoTokenFromPoly2Eth" : [ // need to change to real WmbApp contract address
+          "0x8E529447Ee1B06898949f03373720F469537a641",     // App On Polygon
+          "0x81a1c9aeA719603B3Adc01DF87F8345bb4a26F04"      // App On Eth
+    ],
+    "DemoTokenFromEth2Poly" : [ // need to change to real WmbApp contract address
+      "0x31921dA87447d10426C1e3cdE85fc7909BEeBAf0",     // App On Polygon
+      "0xD31D726F8AdA3E14f5fb37aa99D7E4883FC5F404"      // App On Eth
     ]
 
 }

@@ -11,6 +11,7 @@
         ],
         "signVerify":{
           "XLM" : "Secp256k1Service",
+          "ETH" : "Secp256k1Service",
           "MATIC" : "Secp256k1Service"
         }
     }

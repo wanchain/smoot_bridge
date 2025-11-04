@@ -116,7 +116,7 @@ remove_container() {
 # remove_container "my_container_2"
 
 CRTDIR=$(pwd)
-pm2ScriptPath="$HOME/deploy/agents/agent$index"
+pm2ScriptPath="$CRTDIR/../secret/agent$index"
 echo "${agentPm2Json}"
 echo $agentPm2Json > $pm2ScriptPath/agent_pm2.json
 

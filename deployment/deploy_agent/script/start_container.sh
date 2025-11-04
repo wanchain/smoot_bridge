@@ -14,7 +14,7 @@ for ((i=$index; i<=$toIndex; i++)); do
   fi
 
   CRTDIR=$(pwd)
-  cmd="sed -n "$i"p $HOME/Orel/StellarAgents/adds.txt"
+  cmd="sed -n "$i"p $CRTDIR/../secret/adds.txt"
   echo $cmd
   text=`$cmd`
 
@@ -25,8 +25,8 @@ for ((i=$index; i<=$toIndex; i++)); do
 
   dbip='172.17.0.1'
   
-  password="$HOME/Orel/StellarAgents/pwd.json"
-  keystore="$HOME/Orel/StellarAgents/agent$i/keystore"
+  password="$CRTDIR/../secret/pwd.json"
+  keystore="$CRTDIR/../secret/agent$i/keystore"
  
   startCmd="$script $agentAddr $dbip $i $password $keystore"
 

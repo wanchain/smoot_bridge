@@ -37,17 +37,17 @@
           "chainID": "2147484614"
         }
       },
-      "XLM": {
+      "ETH": {
         "CONF": {
-          "nodeUrl": "https://horizon-testnet.stellar.org/",
+          "nodeUrl": "https://ethereum-sepolia-rpc.publicnode.com",
           "agentAddr": "0x6a8299deccd420d5b6970d611afb25cc8e910220",
           "multiSigThreshold": 2,
           "maxGasPrice": 50,
           "gasPriceDelta": 10,
           "gasLimit": 2000000,
-          "chainID": "2147483796"
+          "chainID": "11155111"
         }
-      }      
+      }
     }
   }
 }
