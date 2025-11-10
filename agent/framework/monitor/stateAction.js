@@ -327,7 +327,7 @@ module.exports = class StateAction {
 
               break;
             } else {
-              this.logger.debug("receipt of ", this.hashX, transHashName, txHash, " is: ", receipt)
+              this.logger.debug("receipt of ", this.hashX, transHashName, txHash, " is: ", JSON.stringify(receipt, null, 2))
               if (txHashArray.indexOf(txHash) === (txHashArray.length - 1) || txHashArray[txHashArray.length - 1] === txHash) {
                 content = {
                   status: rollState[1],
