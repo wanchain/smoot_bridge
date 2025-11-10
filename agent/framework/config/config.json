@@ -20,8 +20,8 @@
     }
   },
   "testnet": {
-    "apiIp": "stellardemo.wanscan.org",
-    "apiPort": "6000",
+    "apiIp": "http://10.1.3.184",
+    "apiPort": "9000",
     "isLeader": true,
     "issueCollectionPath": "./invalidTrans/test/",
     "crossTokens": {

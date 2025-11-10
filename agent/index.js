@@ -93,7 +93,7 @@ async function initTokenList() {
     global.config = loadConfig();
     let tempTokenList = {};
 
-    tempTokenList.apiURL = process.env.apiUrl ? process.env.apiUrl : `https://${global.config.apiIp}:${global.config.apiPort}`;
+    tempTokenList.apiURL = process.env.apiUrl ? process.env.apiUrl : `${global.config.apiIp}:${global.config.apiPort}`;
     global.apiURL = tempTokenList.apiURL;
 
     tempTokenList.crossScAddr = [];
