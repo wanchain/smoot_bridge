@@ -63,10 +63,16 @@ function sleep(time) {
   })
 }
 
+const additionalMapOfChainID = {
+  "11155111": "ETH",
+}
 function getChainSymbolByChainId(chainId) {
   let chainConstants = require('bip44-constants')
   let chainInfo = chainConstants.filter(item => item[0] === Number(chainId));
   if (chainInfo.length === 0) {
+    if(additionalMapOfChainID[chainId]) {
+      return additionalMapOfChainID[chainId];
+    }
     return undefined;
   }
   return chainInfo[0][1];
