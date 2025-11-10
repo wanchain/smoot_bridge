@@ -154,6 +154,7 @@ const test_Config = {
       },
       CONTRACT: {
         gatewayAddr: '0x94Ba3Afc22f98C37e8d05F748DD2C928183d1d3C',
+        gatewayAbi: require('../abi/wmb.gateway.matic.abi.json')
       },
       FUNCTION: commonFunction,
       EVENT: commonEvent
