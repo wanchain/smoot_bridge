@@ -13,12 +13,12 @@ const WmbAppLookupTable = {
 
     // Keys are dApp names, should match with the key used in setWmbAppConverter() inside the context's initialize.js
     "DemoTokenFromPoly2Eth" : [ // need to change to real WmbApp contract address
-          "0x714cd4B6B1182a258e4Ef1FD2Ddb82139ddB5830",     // App On Polygon
-          "0x921206E6CE32BdC72aa7d5760E33CF8422EC408c"      // App On Eth
+      "0xa68bC6f96B0F0f920d610877B85B6EeFeDb4bE95",     // (Erc3643 Token) TokenHome contract on Polygon
+      "0x1c5E389A4C43397A03FF4cF00FC0FC781E100ede"      // (Erc3643 Token) TokenRemote contract on Eth
     ],
     "DemoTokenFromEth2Poly" : [ // need to change to real WmbApp contract address
-      "0xeB4f99DA7cD6C47D4a7adaf14851ecd2B98B9919",     // App On Polygon
-      "0x5D82f2cF40c283a36B87fad94e1072F5bb62cf6a"      // App On Eth
+      "0x5991A20A11A6bd359F428aA776506dF22615EFa1",     // (Erc3643 Token) TokenRemote contract on Polygon
+      "0x398940dACa3b3Ab9c66f611ad596462f45397698"      // (Erc3643 Token) TokenHome contract on Eth
     ]
 
 }
