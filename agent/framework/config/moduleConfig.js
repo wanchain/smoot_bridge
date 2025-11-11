@@ -130,7 +130,7 @@ const test_Config = {
     MATIC: {
       CONF: {
         SAFE_BLOCK_NUM: 0,
-        CONFIRM_BLOCK_NUM: 128,
+        CONFIRM_BLOCK_NUM: 30,
         SYNC_INTERVAL_BLOCK_NUM: 500,
         SYNC_INTERVAL_TIME: 20 * 1000,
         curveID: 1
