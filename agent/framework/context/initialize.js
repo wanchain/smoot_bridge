@@ -9,35 +9,37 @@ const context = require("./index.js");
 
 const ksTool = require("../utils/keyStore");
 
-const EthBaseChain = require("@modules/chain/evm/ethBase.js");
-// const StellarChain = require("@modules/chain/stellar/stellar.js");
-
-const MultiSig = require('@modules/relay/multiSig');
-const EthAgentModel = require("@modules/chain/evm/EthAgentModel.js");
-// const StellarAgent = require("@modules/chain/stellar/StellarAgent.js")
-
-const MaticGateWayConverter = require('@modules/chain/evm/convert/index.js')
-
-const Matic_TokenCrossChainConverter  = require('@modules/converter/TokenCrossChainDemo/evm/index.js');
-
-// Import WmbApp configuration from standalone config file
-const { WmbAppLookupTable } = require('./wmbAppConfig.js');
-
-
 const WmbConverterManager = require("./WmbConverterManager.js")
 
-const wmbConverterManager = new WmbConverterManager(WmbAppLookupTable);
 
-wmbConverterManager.setWmbGateConverter("MATIC", new MaticGateWayConverter("MATIC"));
-wmbConverterManager.setWmbGateConverter("ETH", new MaticGateWayConverter("ETH"));
+// import configuration dicts
+const { wmbGateConvertDict, wmbAppConvertDict, agentClassDict, chainClassDict, relayClassDict } = require('@modules/component_config.js');
 
-// DApp-first:
-wmbConverterManager.setWmbAppConverter("MATIC", "DemoTokenFromPoly2Eth", new Matic_TokenCrossChainConverter("MATIC"));
-wmbConverterManager.setWmbAppConverter("ETH", "DemoTokenFromPoly2Eth", new Matic_TokenCrossChainConverter("ETH"));
+// Build WmbApp lookup table from component_config dapp dict
+function buildWmbAppLookupTableFromConfig(dappConverterDict) {
+  const table = {};
+  Object.entries(dappConverterDict).forEach(([dAppName, chainMap]) => {
+    const addresses = Object.values(chainMap).map(([converterObj, address]) => address);
+    table[dAppName] = addresses;
+  });
+  return table;
+}
 
-// DApp-second:
-wmbConverterManager.setWmbAppConverter("MATIC", "DemoTokenFromEth2Poly", new Matic_TokenCrossChainConverter("MATIC"));
-wmbConverterManager.setWmbAppConverter("ETH", "DemoTokenFromEth2Poly", new Matic_TokenCrossChainConverter("ETH"));
+const wmbAppLookupTable = buildWmbAppLookupTableFromConfig(wmbAppConvertDict);
+const wmbConverterManager = new WmbConverterManager(wmbAppLookupTable);
+
+// register gateway level converters from dict
+Object.entries(wmbGateConvertDict).forEach(([chainName, gatewayConverterObj]) => {
+  wmbConverterManager.setWmbGateConverter(chainName, gatewayConverterObj);
+});
+
+// register dapp level converters from dict
+Object.entries(wmbAppConvertDict).forEach(([dAppName, chainMap]) => {
+  Object.entries(chainMap).forEach(([chainName, value]) => {
+    const [dappConverterObj] = value;
+    wmbConverterManager.setWmbAppConverter(chainName, dAppName, dappConverterObj);
+  });
+});
 
 // exports.convertDict = convertDict;
 global.wmbConverterMgr = wmbConverterManager;
@@ -45,29 +47,18 @@ global.wmbConverterMgr = wmbConverterManager;
 const privateKey = ksTool.getPrivateKey(global.agentAddr, global.secret["WORKING_PWD"]);
 context.setPrivateKey(privateKey);
 
-function creatEthAgentFork(chainType) {
-  class EthAgentModelTemp extends EthAgentModel {
-    constructor(record = null) {
-      super(record, chainType);
-    }
-  }
-  return EthAgentModelTemp;
-}
+// register agent classes from dict
+Object.entries(agentClassDict).forEach(([chainName, AgentClass]) => {
+  context.setAgentClass(chainName, AgentClass);
+});
 
-// const agentDict = {
-//   MATIC: creatEthAgentFork('MATIC'),
-//   XLM: StellarAgent,
-// };
+// register chain classes from dict
+Object.entries(chainClassDict).forEach(([chainName, ChainClass]) => {
+  context.setChainClass(chainName, ChainClass);
+});
 
-context.setAgentClass("MATIC", creatEthAgentFork('MATIC'));
-context.setAgentClass("ETH", creatEthAgentFork('ETH'));
-// context.setAgentClass("XLM", StellarAgent);
-
-context.setChainClass("MATIC", EthBaseChain);
-context.setChainClass("ETH", EthBaseChain);
-// context.setChainClass("XLM", StellarChain);
-
-context.setRelayClass("MATIC", MultiSig);
-context.setRelayClass("ETH", MultiSig);
-// context.setRelayClass("XLM", MultiSig);
+// register relay classes from dict
+Object.entries(relayClassDict).forEach(([chainName, RelayClass]) => {
+  context.setRelayClass(chainName, RelayClass);
+});
 
