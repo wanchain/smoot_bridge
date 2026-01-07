@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <!-- <meta
+      name="description"
+      content="Web site created using create-react-app"
+    /> -->
+    <!-- <meta property="og:description" content="The world’s premier decentralised blockchain interoperability solution. We are all connected." /> -->
+    <meta property="og:url" content="%PUBLIC_URL%" />
+    <meta property="og:title" content="Smoot Bridge" />
+    <meta property="og:image" content="%PUBLIC_URL%/preview.jpg" />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1080" />
+    <meta property="og:site_name" content="Smoot Bridge" />
+    <meta property="og:type" content="website" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Smoot Bridge" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
+    <title>Smoot Bridge</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+      const loadFn = function() {
+        const body_tag = document.body;
+        const theme = localStorage.getItem('theme');
+        let imgSrc, bg;
+        if (theme === 'dark') {
+          imgSrc = `${window.location.origin}/LoadingDark.png`;
+          bg = '#042033';
+        } else {
+          imgSrc = `${window.location.origin}/LoadingLight.png`;
+          bg = '#EBEFF2';
+        }
+        const imgDom = document.getElementById('loading-img');
+        if (imgDom.src !== imgSrc) {
+          imgDom.src = imgSrc;
+          const divDom = document.getElementById('global-loading');
+          divDom.style.background = bg;
+        }
+        // this.setAttribute('src', imgSrc);
+      }
+      window.onload = () => {
+        localStorage.setItem('portfolioInfo', '');
+        window.localStorage.setItem('priceInfo', '');
+        window.localStorage.removeItem('allTokenList');
+        const body_tag = document.body;
+        const theme = localStorage.getItem('theme');
+        if (!theme) return;
+        body_tag.setAttribute('id', theme);
+      }
+    </script>
+    <div id="global-loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #EBEFF2; display: flex; justify-content: center; align-items: center;">
+      <img id="loading-img" src="/LoadingLight.png" onload="loadFn()" />
+    </div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

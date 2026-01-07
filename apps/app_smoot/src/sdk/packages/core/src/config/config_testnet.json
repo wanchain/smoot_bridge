@@ -1,0 +1,40 @@
+{
+  "StoremanService": [
+    {
+      "chainId": "2147483708",
+      "chainType": "ETH",
+      "chainName": "Ethereum",
+      "symbol": "ETH",
+      "chainDecimals": 18,
+      "crossScAddr": "",
+      "SmootBridge": {
+        "crossScAddr": "0xbBC41A516b735Ff86bC5565239B65c929C8944cD"
+      },
+      "explorer": "https://sepolia.etherscan.io",
+      "rpc": "https://ethereum-sepolia.rpc.subquery.network/public",
+      "walletChainId": 11155111,
+      "blockConfirmations": 6,
+      "blockTime": 12
+    },
+    {
+      "chainId": "2147484614",
+      "chainType": "MATIC",
+      "chainName": "Polygon",
+      "symbol": "POL",
+      "chainDecimals": 18,
+      "crossScAddr": "",
+      "SmootBridge": {
+        "crossScAddr": "0x4edB9D4ba0042926946a842E8d2dbB37edc9C677"
+      },
+      "explorer": "https://amoy.polygonscan.com",
+      "rpc": "https://rpc-amoy.polygon.technology",
+      "walletChainId": 80002,
+      "blockConfirmations": 500,
+      "blockTime": 2
+    }
+  ],
+  "TaskService": {
+    "taskInterval": 5000
+  },
+  "noEthChainInfo": []
+}
